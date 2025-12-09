@@ -15,6 +15,7 @@ public class CerealRunner2 {
     // Declare your instance variable here
     // You need an ArrayList to store Cereal objects
 
+    ArrayList<Cereal> cereals;
 
 
     /**
@@ -34,11 +35,35 @@ public class CerealRunner2 {
      * 7. Handle FileNotFoundException with try-catch
      */
     public CerealRunner2() {
+        cereals = new ArrayList<>();
 
 
+        try {
+        File cerealFile = new File("cerealSubset.csv");
+            Scanner fileScanner = new Scanner(cerealFile);
 
+            while (true){
+                if (!fileScanner.hasNextLine()){
+                   fileScanner.close();
+                   System.out.println("Loaded " + cereals.size() + " cereals.\n");
+                     break;
+        } 
 
+        // do more stuff
+        String theNextLine = fileScanner.nextLine();
+        String[] splitData = theNextLine.split(",");
+        String name = splitData[0];
+        int calories = Integer.parseInt(splitData[1]);
+        int fiber = Integer.parseInt(splitData[2]);
+        int carbohydrates = Integer.parseInt(splitData[3]);
+        double cups = Double.parseDouble(splitData[4]);
     }
+        catch (Exception e){
+            System.out.println("OOPS"); }
+        }
+
+       
+    
 
     /**
      * Getter method for the cereals ArrayList
@@ -51,7 +76,7 @@ public class CerealRunner2 {
      * Main method - creates runner and prints number of records
      */
     public static void main(String[] args) {
-        // Create a CerealRunner2 object
+            // Create a CerealRunner2 object
 
 
         // Print the number of records created
