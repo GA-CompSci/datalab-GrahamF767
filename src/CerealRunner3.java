@@ -33,7 +33,11 @@ public class CerealRunner3 {
      */
     public static ArrayList<Cereal> filterCarbsPerCup(int min, int max) {
 
+        ArrayList<Cereal> result = new ArrayList();
 
+            for cereal : cereals {
+                double carbsPerCup = 
+            }
 
 
         return null;  // Replace with your code

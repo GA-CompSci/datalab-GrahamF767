@@ -35,32 +35,41 @@ public class CerealRunner2 {
      * 7. Handle FileNotFoundException with try-catch
      */
     public CerealRunner2() {
-        cereals = new ArrayList<>();
+        cereals = new ArrayList<>(); //initilize your instance variable
 
+        
+            try {
+            File cerealFile = new File("cerealSubset.csv");
+                Scanner fileScanner = new Scanner(cerealFile);
 
-        try {
-        File cerealFile = new File("cerealSubset.csv");
-            Scanner fileScanner = new Scanner(cerealFile);
+                while (true){
+                    if (!fileScanner.hasNextLine()){
+                    fileScanner.close();
+                    System.out.println("Loaded " + cereals.size() + " cereals.\n");
+                        break;
+                    }
+            
 
-            while (true){
-                if (!fileScanner.hasNextLine()){
-                   fileScanner.close();
-                   System.out.println("Loaded " + cereals.size() + " cereals.\n");
-                     break;
-        } 
+                    // PARSE THEN ADD DATA TO COLLECTION
+                    String theNextLine = fileScanner.nextLine();
+                    String[] splitData = theNextLine.split(",");
+                    String name = splitData[0];
+                    int calories = Integer.parseInt(splitData[1]);
+                    int fiber = Integer.parseInt(splitData[2]);
+                    int carbohydrates = Integer.parseInt(splitData[3]);
+                    double cups = Double.parseDouble(splitData[4]);
+                    Cereal cereal = new Cereal(name, calories, fiber, carbohydrates, cups);
 
-        // do more stuff
-        String theNextLine = fileScanner.nextLine();
-        String[] splitData = theNextLine.split(",");
-        String name = splitData[0];
-        int calories = Integer.parseInt(splitData[1]);
-        int fiber = Integer.parseInt(splitData[2]);
-        int carbohydrates = Integer.parseInt(splitData[3]);
-        double cups = Double.parseDouble(splitData[4]);
-    }
-        catch (Exception e){
-            System.out.println("OOPS"); }
+                    cereals.add(cereal);
+                }
+            }catch (Exception e){
+                //catch all exeptions is lazy programming
+                System.out.println("OOPS ERROR! " + e); 
+                System.out.println("STOP Al! STOP MESSING UP EVERYTHING. I. HATE. YOU. YOU CAN GO. LEAVE. NOW. ANDY DECLARES WAR ON YOU. PROVOKE HIM AT YOUR OWN RISK. HEY DAVE. GET ME MY SHOTGUN. ITS OVER 9000! SD DONT WANT U\r\n" + //
+                                        "I HATE YOU SO MUCH. I HOPE YOU STEP ON A LEGO. MAYBE TWO. I HOPE YOU GET STUNG BY A BEE. MAYBE A WHOLE SWARM. I HOPE YOU TRIP AND FALL AND BREAK EVERY BONE IN YOUR BODY. I HOPE YOU GET A PAPER CUT ON YOUR EYEBALL. I HOPE YOU NEVER FIND TRUE LOVE. I HOPE YOUR WIFI SIGNAL IS WEAK FOREVER. I HOPE YOU GET STUCK IN TRAFFIC FOR HOURS. I HOPE YOU SPILL HOT COFFEE ON YOUR LAP. I HOPE YOUR FAVORITE SHOW GETS CANCELLED. I HOPE YOU LOSE YOUR KEYS AND PHONE AND WALLET ALL AT ONCE. I HOPE YOU HAVE TO LISTEN TO NICKELBACK ON REPEAT FOR 24 HOURS STRAIGHT. I HOPE YOU GET FOOD POISONING FROM YOUR FAVORITE RESTAURANT. I HOPE YOU STEP IN A PUDDLE OF COLD WATER WITH SOCKS ON. I HOPE YOUR COMPUTER CRASHES AND YOU LOSE ALL YOUR WORK. I HOPE YOU GET A FLAT TIRE IN THE MIDDLE OF NOWHERE. I HOPE YOU FORGET YOUR PASSWORD AND CAN'T ACCESS ANY OF YOUR ACCOUNTS. I HOPE YOU GET CAUGHT IN A RAINSTORM WITHOUT AN UMBRELLA. I HOPE YOU HAVE TO WORK OVERTIME EVERY SINGLE DAY THIS WEEK. I HOPE YOU RUN OUT OF GAS ON THE HIGHWAY. I HOPE YOU GET A SUNBURN ON THE FIRST DAY OF SUMMER. I HOPE YOUR FAVORITE SPORTS TEAM LOSES THE CHAMPIONSHIP. I HOPE YOU GET STUCK IN AN ELEVATOR FOR HOURS. I HOPE YOU HAVE TO LISTEN TO SOMEONE CHEWING LOUDLY NEXT TO YOU ALL DAY. I HOPE YOU GET A SPLINTER IN YOUR FINGER THAT WON'T COME OUT. I HOPE YOUR PLANS GET CANCELLED LAST MINUTE EVERY TIME. I HOPE YOU HAVE TO DEAL WITH ANNOYING TELEMARKETERS CONSTANTLY. I HOPE YOU GET A BAD HAIRCUT THAT TAKES MONTHS TO GROW OUT. I HOPE YOUR FLIGHT GETS DELAYED FOR HOURS WITH NO EXPLANATION.\r\n" );
+            }
         }
+        
 
        
     
@@ -69,7 +78,7 @@ public class CerealRunner2 {
      * Getter method for the cereals ArrayList
      */
     public ArrayList<Cereal> getCereals() {
-        return null;  // Fix this
+        return cereals;  // Fix this
     }
 
     /**
@@ -77,7 +86,8 @@ public class CerealRunner2 {
      */
     public static void main(String[] args) {
             // Create a CerealRunner2 object
-
+        CerealRunner2 theInstanceOfThisFile = new CerealRunner2();
+        
 
         // Print the number of records created
         // Should output: "76 records created."

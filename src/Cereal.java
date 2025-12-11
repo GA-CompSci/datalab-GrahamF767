@@ -23,7 +23,7 @@ public class Cereal {
     // Write your constructor here
     // It should take 5 parameters in this order:
     // String name, int calories, int fiber, int carbohydrates, double cups
-
+    // getters
     public Cereal(String name, int calories, int fiber, int carbohydrates, double cups) {
         this.name = name;
         this.calories = calories;
