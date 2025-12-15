@@ -35,12 +35,15 @@ public class CerealRunner3 {
 
         ArrayList<Cereal> result = new ArrayList();
 
-            for cereal : cereals {
-                double carbsPerCup = 
+            for(Cereal cereal : cereals){
+                double carbsPerCup = cereal.getCarbohydrates() / cereal.getCups(); 
+                if (carbsPerCup >= min && carbsPerCup <= max){
+                    result.add(cereal);
+                }
             }
 
 
-        return null;  // Replace with your code
+        return result;  // Replace with your code
     }
 
     /**
@@ -61,11 +64,19 @@ public class CerealRunner3 {
      * @return Cereal with highest fiber percentage, or null if empty
      */
     public static Cereal highestPercentFiber() {
+        if(cereals.get( 0 ) == null) return null;
+
+        Cereal bestFiberPercentage = cereals.get(0);
+
+        for(Cereal best : cereals){
+
+            if ((double)(best.getFiber()) / best.getCalories() > (double)(bestFiberPercentage.getFiber()) / bestFiberPercentage.getCalories()){
+                 bestFiberPercentage = best;
+            }
+        }
 
 
-
-
-        return null;  // Replace with your code
+        return bestFiberPercentage;  // Replace with your code
     }
 
     /**
