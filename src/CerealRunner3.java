@@ -88,10 +88,11 @@ public class CerealRunner3 {
      * @return net carbs
      */
     public static double findNetCarbs(Cereal c) {
+        double netCarbs = c.getCarbohydrates() - c.getFiber();
 
 
 
-        return 0;  // Replace with your code
+        return netCarbs;  // Replace with your code
     }
 
     // ========================================================================
